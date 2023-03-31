@@ -30,7 +30,22 @@ function SearchPage({ params: { id } }: Props) {
         </p>
       </div>
     );
-  return <div></div>;
+  return (
+    <div>
+      <div>
+        <div>
+          <h1 className="font-bold">
+            Search results for{' '}
+            <span className="text-indigo-600">"{snapshot.data()?.search}"</span>
+          </h1>
+          <p className="text-gray-300">
+            {snapshot.data()?.results?.length > 0 &&
+              `${snapshot.data()?.results?.length} results found`}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default SearchPage;
