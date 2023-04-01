@@ -3,6 +3,7 @@
 import { db } from '../../../firebase';
 import { doc } from 'firebase/firestore';
 import { useDocument } from 'react-firebase-hooks/firestore';
+import Results from '@/components/Results';
 
 type Props = {
   params: {
@@ -31,9 +32,9 @@ function SearchPage({ params: { id } }: Props) {
       </div>
     );
   return (
-    <div>
-      <div>
-        <div>
+    <div className="py-5">
+      <div className="flex items-center justify-between mb-7">
+        <div className="flex flex-col md:flex-row gap-x-4">
           <h1 className="font-bold">
             Search results for{' '}
             <span className="text-indigo-600">"{snapshot.data()?.search}"</span>
@@ -44,6 +45,10 @@ function SearchPage({ params: { id } }: Props) {
           </p>
         </div>
       </div>
+
+      {snapshot.data()?.results?.length > 0 && (
+        <Results results={snapshot.data()?.results} />
+      )}
     </div>
   );
 }
